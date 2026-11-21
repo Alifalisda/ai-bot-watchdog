@@ -1,0 +1,24 @@
+[Unit]
+Description=AI Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=botuser
+Group=botuser
+WorkingDirectory=/opt/ai-bots
+EnvironmentFile=/opt/ai-bots/.env
+# Heartbeat lives in /var/lib/ai-bot (systemd creates it, owned by botuser)
+Environment=AI_BOT_HEARTBEAT_FILE=/var/lib/ai-bot/heartbeat
+StateDirectory=ai-bot
+ExecStart=/opt/ai-bots/.venv/bin/python -m bots.ai_bot
+# If it crashes, start it again after 5s
+Restart=always
+RestartSec=5
+# Basic hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

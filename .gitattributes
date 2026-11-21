@@ -1,0 +1,2 @@
+# Keep LF everywhere: deploy/setup.sh and systemd units break on Linux with CRLF.
+* text=auto eol=lf

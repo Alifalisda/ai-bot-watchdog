@@ -1,0 +1,3 @@
+# Lets the watchdog restart ONLY these services, nothing else.
+# Installed to /etc/sudoers.d/ai-bots by deploy/setup.sh
+botuser ALL=(root) NOPASSWD: /usr/bin/systemctl restart ai-bot

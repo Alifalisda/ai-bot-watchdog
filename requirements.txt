@@ -1,0 +1,4 @@
+python-telegram-bot[job-queue]>=21.6,<23
+openai>=1.40,<3
+python-dotenv>=1.0
+tzdata; sys_platform == "win32"

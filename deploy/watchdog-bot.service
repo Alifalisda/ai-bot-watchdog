@@ -1,0 +1,19 @@
+[Unit]
+Description=Watchdog Telegram bot (monitors the other bots)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=botuser
+Group=botuser
+WorkingDirectory=/opt/ai-bots
+EnvironmentFile=/opt/ai-bots/.env
+ExecStart=/opt/ai-bots/.venv/bin/python -m bots.watchdog_bot
+Restart=always
+RestartSec=5
+# No NoNewPrivileges here: the watchdog needs sudo for the restart whitelist
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
