@@ -8,6 +8,7 @@ requires-python = ">=3.10"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]  # make `bots` importable when running plain `pytest`
 addopts = "-q"
 
 [tool.ruff]
