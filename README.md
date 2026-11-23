@@ -26,19 +26,14 @@ retries and rate limits, structured logs, least-privilege restarts, a runbook, a
                                           └────────────────────────────────────────┘
 ```
 
-## What it looks like
+## Running it for real
 
-```
-/status
-✅ ai-bot - active for 2h 14m, heartbeat 12s ago
+Screenshots from the deployment on Ubuntu (WSL2, systemd):
 
-🚨 ai-bot is unhealthy
-❌ ai-bot - active for 9m 3s, heartbeat 2m 38s ago
-    ⚠️ heartbeat is 2m 38s old - process may be stuck
-🔁 Auto-restarted ai-bot (it was running but its heartbeat had stopped).
-✅ ai-bot recovered
-✅ ai-bot - active for 58s, heartbeat 28s ago
-```
+| Watchdog bot | AI bot |
+|---|---|
+| <img src="docs/screenshots/watchdog-bot.png" alt="Watchdog bot detecting a frozen ai-bot, auto-restarting it, then /help and /status" width="420"> | <img src="docs/screenshots/ai-bot.png" alt="AI bot answering /ping and a question" width="420"> |
+| **Stuck-process test:** the AI bot was frozen with `SIGSTOP`. The watchdog noticed the heartbeat had stopped (12:31), restarted the bot, and reported the recovery (12:32). The next day: `/help` and `/status` after deploying 0.2.0 (now with uptime). | `/ping` reports uptime and the model in use (`gemini-3-flash-preview`). Then a normal question, answered in short bullet points as the system prompt asks. |
 
 ## Features
 
